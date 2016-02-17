@@ -3,8 +3,8 @@
 // February, 10th, 2016
 import org.apache.commons.collections4.*;
 
-Bag bag;
 Animal animal;
+  myBag bag = new myBag(new PVector(10, height / 2));
 int numColors=5;
 int numPrey=50;
 ArrayList <Prey> dataSnacks= new ArrayList<Prey>();
@@ -12,7 +12,6 @@ color [] colors = new color[numColors];
 
 void setup() {
   size(1200, 600);
-  myBag bag = new myBag(new PVector(10, height / 2));
   for (int i=0; i< numColors; i++)
   {
   	colors[i]= color (random(0,255), random (0,255), random (0,255));
@@ -25,23 +24,25 @@ void setup() {
   }
 }
 
-void draw() {
-  background(55);
-  for (int i=numPrey-1; i>0; i--)
-  	{
-		Prey food= dataSnacks.get(i);
-		food.draw();
-    if (bag.isTouching(food))
-    {
-      bag.eatPrey();
-    }
+void draw() 
+  {
+    background(55);
+    for (int i=numPrey-1; i>0; i--)
+    	{
+  		Prey food= dataSnacks.get(i);
+  		food.draw();
+       if (bag.isTouching(food))
+        {
+          bag.eatPrey(food);
+        }
 
- 	  } 
-  // animal.draw()
-  bag.walk();
-  bag.draw();
-  drawSafari();
-}
+   	  } 
+    
+    // animal.draw()
+    bag.walk();
+    bag.draw();
+    drawSafari();
+  }
 
 void drawSafari ()
 {

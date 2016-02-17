@@ -1,13 +1,13 @@
 class myBag extends Animal
 {
-  
-	public myBag (PVector initialLocation )
-	{
-		super(initialLocation);
-    HashBag data = new HashBag();
-	}
+  HashBag data = new HashBag();
 
-void draw()
+  public myBag (PVector initialLocation )
+  {
+    super(initialLocation);
+  }
+
+  public void draw()
   {
     fill (122, 55, 25);
     ellipse(location.x, location.y, 100, 100);
@@ -29,11 +29,11 @@ void draw()
 
 class myStack extends Animal
 {
-	public myStack (PVector initialLocation )
-	{
-		super(initialLocation);
-	}
-	void draw()
+  public myStack (PVector initialLocation )
+  {
+    super(initialLocation);
+  }
+  void draw()
   {
     stroke(150, 20, 0);
     rect(location.x, location.y, 100, 100);
