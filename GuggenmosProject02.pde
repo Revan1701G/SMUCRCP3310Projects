@@ -7,15 +7,20 @@ import org.apache.commons.collections4.*;
   myBag bag = new myBag(new PVector(10, height / 2));
   myList list= new myList(new PVector(10, height / 2));
   myStack stack=new myStack(new PVector(10, height / 2));
+  myQueue queue=new myQueue(new PVector(10, height / 2));
+
 
   //myList list= new myList (new PVector(10, height / 2));
 int numColors=5;
 int numPrey=50;
 ArrayList <Prey> dataSnacks= new ArrayList<Prey>();
 color [] colors = new color[numColors];
+int whichDS;
+
 
 void setup() {
   size(1200, 600);
+  whichDS=0;
   for (int i=0; i< numColors; i++)
   {
   	colors[i]= color (random(0,255), random (0,255), random (0,255));
@@ -31,14 +36,35 @@ void setup() {
 void draw() 
   {
     background(55);
+
+    if (mousePressed == true) 
+    {
+      whichDS++;
+    }
+    whichDS= (whichDS % 4);
+    drawSafari();
+
+    if (whichDS==0)
+    {
+      queue.walk();
+      queue.draw(dataSnacks);
+    }
+     if (whichDS==1)
+    {
+    list.walk();
+    list.draw(dataSnacks);
+    }
+     if (whichDS==2)
+    {
     stack.walk();
     stack.draw(dataSnacks);
-   // list.walk();
-    // list.draw(dataSnacks);
-    // animal.draw()
-    // bag.walk();
-    // bag.draw(dataSnacks);
-    drawSafari();
+    }
+     if (whichDS==3)
+    {
+    bag.walk();
+    bag.draw(dataSnacks);
+    }
+  
   }
 
 void drawSafari ()

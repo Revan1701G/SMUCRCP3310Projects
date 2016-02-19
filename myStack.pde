@@ -56,20 +56,23 @@ class myStack extends Animal
   {
     int index;
     index=-1;
-    Prey f= (Prey) dataStack.peek();
-    if (p.c== f.c)
+    if (!dataStack.isEmpty())
     {
-      index++;
-    }
+      Prey f= (Prey) dataStack.peek();
+      if (p.c== f.c)
+      {
+        index++;
+      }
 
-    if (index != -1)
-    {
-                  println ("DISCARD");
+      if (index != -1)
+      {
+                    println ("DISCARD");
 
-      dataStack.pop(); 
-      println (stomach.size());
-      stomach.remove(0);
-      println (stomach.size());
+        dataStack.pop(); 
+        println (stomach.size());
+        stomach.remove(0);
+        println (stomach.size());
+      }
     }
   }
 

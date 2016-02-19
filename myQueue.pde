@@ -2,14 +2,14 @@
 //  Data Structure Safari
 //  February, 10th, 2016
 
-class myList extends Animal
+class myQueue extends Animal
 {
-    CursorableLinkedList dataList= new CursorableLinkedList();
+    CircularFifoQueue dataQueue= new CircularFifoQueue();
     ArrayList <Prey> stomach= new ArrayList<Prey>();
     int xCounter;
     int yCounter;
 
-  public myList (PVector initialLocation )
+  public myQueue (PVector initialLocation )
   {
     super(initialLocation);
   }
@@ -20,24 +20,24 @@ class myList extends Animal
       {
       Prey food= dataSnacks.get(i);
       food.draw();
-      if (list.isTouching(food))
+      if (queue.isTouching(food))
         {
-          if (list.location.x <(width/3*2) && list.location.x >(width/3))
+          if (queue.location.x <(width/3*2) && queue.location.x >(width/3))
           { 
-            list.discardPrey(food);
+            queue.discardPrey(food);
           } 
        
           else 
            {
-              list.eatPrey (food);
+              queue.eatPrey (food);
               dataSnacks.remove(i);
               numPrey--;
            }
         }
-       list.drawStomach ();
+       queue.drawStomach ();
 
       } 
-    fill (155, 0, 25);
+    fill (25, 25, 200);
     rect(location.x, location.y, 100, 50);
   }
 
@@ -48,7 +48,7 @@ class myList extends Animal
 
   public void eatPrey (Prey p)
   {
-    dataList.add(p);
+    dataQueue.add(p);
     stomach.add(p);
   }
 
@@ -56,9 +56,9 @@ class myList extends Animal
   {
     int index;
     index=-1;
-    if (!dataList.isEmpty())
+    if (!dataQueue.isEmpty())
     {
-      Prey f= (Prey) dataList.getFirst();
+      Prey f= (Prey) dataQueue.peek();
       if (p.c== f.c)
       {
         index++;
@@ -68,7 +68,7 @@ class myList extends Animal
       {
                     println ("DISCARD");
 
-        dataList.removeFirst(); 
+        dataQueue.remove(); 
         println (stomach.size());
         stomach.remove(0);
         println (stomach.size());
@@ -78,7 +78,7 @@ class myList extends Animal
 
   public void drawStomach()
   {
-    xCounter=310;
+    xCounter=910;
     yCounter= (height-50);
     for (int i=0; i < stomach.size(); i++)
       {
@@ -86,9 +86,9 @@ class myList extends Animal
         contents.location.x =xCounter;
         contents.location.y =yCounter;
         xCounter+=10;
-        if (xCounter==500)
+        if (xCounter==1180)
         {
-          xCounter=310;
+          xCounter=910;
           yCounter+=20;
         }
         contents.draw();
