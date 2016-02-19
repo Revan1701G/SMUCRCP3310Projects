@@ -1,3 +1,7 @@
+//  Gregory Guggenmos
+//  Data Structure Safari
+//  February, 10th, 2016
+
 class myBag extends Animal
 {
   HashBag data = new HashBag();
@@ -9,8 +13,29 @@ class myBag extends Animal
     super(initialLocation);
   }
 
-  public void draw()
+  public void draw(ArrayList <Prey> dataSnacks)
   {
+    for (int i=numPrey-1; i>0; i--)
+      {
+      Prey food= dataSnacks.get(i);
+      food.draw();
+      if (bag.isTouching(food))
+        {
+          if (bag.location.x <(width/3*2) && bag.location.x >(width/3))
+          { 
+            bag.discardPrey(food);
+          } 
+       
+          else 
+           {
+              bag.eatPrey (food);
+              dataSnacks.remove(i);
+              numPrey--;
+           }
+        }
+       bag.drawStomach ();
+
+      } 
     fill (122, 55, 25);
     ellipse(location.x, location.y, 100, 100);
   }
@@ -53,36 +78,6 @@ class myBag extends Animal
     for (int i=0; i < stomach.size(); i++)
       stomach.get(i).draw();
   }
-  
-
-
-  /*public void drawStomach(Prey p)
-  {
-    boolean hasPrey;
-    hasPrey=false;
-    hasPrey=data.contains(p);
-    if (hasPrey==true)
-    {
-        stomach.add(p);
-    }
-
-    for (int i=0; i < stomach.size(); i++)
-      stomach.get(i).draw();
-  }*/
-
-  
 
 }
 
-class myStack extends Animal
-{
-  public myStack (PVector initialLocation )
-  {
-    super(initialLocation);
-  }
-  void draw()
-  {
-    stroke(150, 20, 0);
-    rect(location.x, location.y, 100, 100);
-  }
-}

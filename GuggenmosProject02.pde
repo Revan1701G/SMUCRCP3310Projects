@@ -1,10 +1,14 @@
-// TODO Gregory Guggenmos
-// TODO Data Structure Safari
-// February, 10th, 2016
+//  Gregory Guggenmos
+//  Data Structure Safari
+//  February, 10th, 2016
 import org.apache.commons.collections4.*;
 
-Animal animal;
+  Animal animal;
   myBag bag = new myBag(new PVector(10, height / 2));
+  myList list= new myList(new PVector(10, height / 2));
+  myStack stack=new myStack(new PVector(10, height / 2));
+
+  //myList list= new myList (new PVector(10, height / 2));
 int numColors=5;
 int numPrey=50;
 ArrayList <Prey> dataSnacks= new ArrayList<Prey>();
@@ -27,31 +31,13 @@ void setup() {
 void draw() 
   {
     background(55);
-    for (int i=numPrey-1; i>0; i--)
-    	{
-      Prey food= dataSnacks.get(i);
-      food.draw();
-      if (bag.isTouching(food))
-        {
-          if (bag.location.x <(width/3*2) && bag.location.x >(width/3))
-          { 
-            bag.discardPrey(food);
-          } 
-       
-          else 
-           {
-              bag.eatPrey (food);
-              dataSnacks.remove(i);
-              numPrey--;
-           }
-        }
-       bag.drawStomach ();
-
-   	  } 
-    
+    stack.walk();
+    stack.draw(dataSnacks);
+   // list.walk();
+    // list.draw(dataSnacks);
     // animal.draw()
-    bag.walk();
-    bag.draw();
+    // bag.walk();
+    // bag.draw(dataSnacks);
     drawSafari();
   }
 

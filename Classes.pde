@@ -39,7 +39,7 @@ final int MAX_VELOCITY = 1;
     if (location.x > width) location.x = 0;
   }
 
-  void draw() 
+  void drawAnimal() 
   {
     stroke(150, 20, 0);
     ellipse(location.x, location.y, w, h);
