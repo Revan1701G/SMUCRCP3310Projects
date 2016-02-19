@@ -29,12 +29,23 @@ void draw()
     background(55);
     for (int i=numPrey-1; i>0; i--)
     	{
-  		Prey food= dataSnacks.get(i);
-  		food.draw();
-       if (bag.isTouching(food))
+      Prey food= dataSnacks.get(i);
+      food.draw();
+      if (bag.isTouching(food))
         {
-          bag.eatPrey(food);
+          if (bag.location.x <(width/3*2) && bag.location.x >(width/3))
+          { 
+            bag.discardPrey(food);
+          } 
+       
+          else 
+           {
+              bag.eatPrey (food);
+              dataSnacks.remove(i);
+              numPrey--;
+           }
         }
+       bag.drawStomach ();
 
    	  } 
     
@@ -49,6 +60,10 @@ void drawSafari ()
   stroke (122);
 
   line (0, (height-150), width, (height-150));
+  line ((width/3), (height-150), (width/3), 0);
+  line ((width/3*2), (height-150), (width/3*2), 0);
+
+
   fill (122, 55, 25, 80);
   rect (0, height-150, 300, height);
   fill (155, 0, 25,80);

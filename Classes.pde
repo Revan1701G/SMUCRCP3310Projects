@@ -1,3 +1,7 @@
+//  Gregory Guggenmos
+//  Data Structure Safari
+//  February, 10th, 2016
+
 class Animal 
 {
 final int MAX_VELOCITY = 1;
@@ -52,7 +56,7 @@ class Prey
 	{
 		location= initialLocation;
 		this.c=c;
-		diameter=20;
+		diameter=5;
 	}
 
 	void draw ()
